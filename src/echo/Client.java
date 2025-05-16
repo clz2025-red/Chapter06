@@ -41,22 +41,33 @@ public class Client {
 		//스캐너 준비
 		Scanner sc = new Scanner(System.in);
 		
-		//메세지 키보드로 입력받기
-		String msg = sc.nextLine();  //입력대기
+		//--------------------------------
+		while(true) {
+			
+			//메세지 키보드로 입력받기
+			String msg = sc.nextLine();  //입력대기
+			
+			if("/q".equals(msg)) { //끝내는 상황
+				break;
+			}
+			
+			//메세지 보내기
+			bw.write(msg);
+			bw.newLine();
+			bw.flush();
+
+			//메세지 받기
+			String reMsg= br.readLine();
+			System.out.println("server:[" +   reMsg  + "]");
 		
-		//메세지 보내기
-		bw.write(msg);
-		bw.newLine();
-		bw.flush();
-		
-		//메세지 받기
-		String reMsg= br.readLine();
-		System.out.println("server:[" +   reMsg  + "]");
+		}
 		
 		System.out.println("======================================");
 		System.out.println("<클라이언트 종료>");
 		
 		//닫기
+		sc.close();
+		br.close();
 		bw.close();
 		socket.close();
 	}
