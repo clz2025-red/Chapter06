@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 //뉴욕
 public class Client {
@@ -37,8 +38,14 @@ public class Client {
 		InputStreamReader isr = new InputStreamReader(in, "UTF-8");
 		BufferedReader br = new BufferedReader(isr);
 		
+		//스캐너 준비
+		Scanner sc = new Scanner(System.in);
+		
+		//메세지 키보드로 입력받기
+		String msg = sc.nextLine();  //입력대기
+		
 		//메세지 보내기
-		bw.write("안녕");
+		bw.write(msg);
 		bw.newLine();
 		bw.flush();
 		
